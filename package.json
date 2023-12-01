@@ -1,15 +1,14 @@
 {
-  "name": "diffie-hellman",
-  "version": "5.0.3",
-  "description": "pure js diffie-hellman",
+  "name": "expo-diffie-hellman",
+  "version": "1.0.0",
+  "description": "Clone of browserify/diffie-hellman compatible with expo",
   "main": "index.js",
-  "browser": "browser.js",
   "scripts": {
-    "test": "node test.js | tspec"
+
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/crypto-browserify/diffie-hellman.git"
+    "url": "https://github.com/talon2295/expo-diffie-hellman.git"
   },
   "keywords": [
     "diffie",
@@ -17,16 +16,16 @@
     "diffiehellman",
     "dh"
   ],
-  "author": "Calvin Metcalf",
+  "author": "Talon",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/crypto-browserify/diffie-hellman/issues"
+    "url": "https://github.com/talon2295/expo-diffie-hellman/issues"
   },
-  "homepage": "https://github.com/crypto-browserify/diffie-hellman",
+  "homepage": "https://github.com/talon2295/expo-diffie-hellman",
   "dependencies": {
     "bn.js": "^4.1.0",
-    "miller-rabin": "^4.0.0",
-    "randombytes": "^2.0.0"
+    "expo-crypto": "^12.6.0",
+    "miller-rabin": "^4.0.0"
   },
   "devDependencies": {
     "tap-spec": "^1.0.1",

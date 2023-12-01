@@ -1,10 +1,42 @@
-var crypto = require('crypto')
+var generatePrime = require('./lib/generatePrime')
+var primes = require('./lib/primes.json')
 
-// getDiffieHellman
-exports.DiffieHellmanGroup = crypto.DiffieHellmanGroup
-exports.createDiffieHellmanGroup = crypto.createDiffieHellmanGroup
-exports.getDiffieHellman = crypto.getDiffieHellman
+var DH = require('./lib/dh')
 
-// createDiffieHellman
-exports.createDiffieHellman = crypto.createDiffieHellman
-exports.DiffieHellman = crypto.DiffieHellman
+function getDiffieHellman(mod) {
+    var prime = Buffer.from(primes[mod].prime, 'hex')//new Buffer(primes[mod].prime, 'hex')
+    var gen = Buffer.from(primes[mod].gen, 'hex')//new Buffer(primes[mod].gen, 'hex')
+
+    return new DH(prime, gen)
+}
+
+var ENCODINGS = {
+    'binary': true, 'hex': true, 'base64': true
+}
+
+function createDiffieHellman(prime, enc, generator, genc) {
+    if (Buffer.isBuffer(enc) || ENCODINGS[enc] === undefined) {
+        return createDiffieHellman(prime, 'binary', enc, generator)
+    }
+
+    enc = enc || 'binary'
+    genc = genc || 'binary'
+    generator = generator || new Buffer([2])
+
+    if (!Buffer.isBuffer(generator)) {
+        generator = Buffer.from(generator, genc); //new Buffer(generator, genc)
+    }
+
+    if (typeof prime === 'number') {
+        return new DH(generatePrime(prime, generator), generator, true)
+    }
+
+    if (!Buffer.isBuffer(prime)) {
+        prime = Buffer.from(prime, enc); //new Buffer(prime, enc)
+    }
+
+    return new DH(prime, generator, true)
+}
+
+exports.DiffieHellmanGroup = exports.createDiffieHellmanGroup = exports.getDiffieHellman = getDiffieHellman
+exports.createDiffieHellman = exports.DiffieHellman = createDiffieHellman
