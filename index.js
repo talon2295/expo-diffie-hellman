@@ -21,7 +21,7 @@ function createDiffieHellman(prime, enc, generator, genc) {
 
     enc = enc || 'binary'
     genc = genc || 'binary'
-    generator = generator || new Buffer([2])
+    generator = generator || new Buffer.from([2])
 
     if (!Buffer.isBuffer(generator)) {
         generator = Buffer.from(generator, genc); //new Buffer(generator, genc)
