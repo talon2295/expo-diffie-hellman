@@ -2,7 +2,7 @@ type encoding_t = "binary" | "hex" | "base64";
 type prime_t = ArrayBuffer | number;
 type mod_t = "modp1" | "modp2" | "modp5" | "modp14" | "modp15" | "modp16" | "modp17" | "modp18";
 
-class DH {
+declare class DH {
     constructor(prime: prime_t, generator: Buffer | number[], malleable?: boolean);
 
     verifyError: number;
@@ -18,11 +18,11 @@ class DH {
     setGenerator(gen: Buffer | string, enc?: string): this;
 }
 
-function getDiffieHellman(mod: mod_t): DH;
+declare function getDiffieHellman(mod: mod_t): DH;
 
-function createDiffieHellman(prime: prime_t): DH;
-function createDiffieHellman(prime: string, enc: encoding_t): DH;
-function createDiffieHellman(prime: string, enc: encoding_t, generator: prime_t): DH;
-function createDiffieHellman(prime: string, enc: encoding_t, generator: string, genc: encoding_t): DH;
+declare function createDiffieHellman(prime: prime_t): DH;
+declare function createDiffieHellman(prime: string, enc: encoding_t): DH;
+declare function createDiffieHellman(prime: string, enc: encoding_t, generator: prime_t): DH;
+declare function createDiffieHellman(prime: string, enc: encoding_t, generator: string, genc: encoding_t): DH;
 
 export { getDiffieHellman, createDiffieHellman };
