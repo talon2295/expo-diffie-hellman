@@ -3,19 +3,33 @@ type prime_t = ArrayBuffer | number;
 type mod_t = "modp1" | "modp2" | "modp5" | "modp14" | "modp15" | "modp16" | "modp17" | "modp18";
 
 declare class DH {
-    constructor(prime: prime_t, generator: Buffer | number[], malleable?: boolean);
+    constructor(prime: prime_t, generator: prime_t, malleable?: boolean);
 
     verifyError: number;
-    
-    setPublicKey(pub: Buffer | string, enc?: string): this;
-    setPrivateKey(priv: Buffer | string, enc?: string): this;
+
+    setPublicKey(pub: Buffer): this;
+    setPublicKey(pub: string, enc: encoding_t): this;
+
+    setPrivateKey(priv: Buffer): this;
+    setPrivateKey(priv: string, enc: encoding_t): this;
+
     generateKeys(): Buffer;
-    computeSecret(other: Buffer | number[]): Buffer;
-    getPublicKey(enc?: string): Buffer | string;
-    getPrivateKey(enc?: string): Buffer | string;
-    getPrime(enc?: string): Buffer | string;
-    getGenerator(enc?: string): Buffer | string;
-    setGenerator(gen: Buffer | string, enc?: string): this;
+    computeSecret(other: prime_t): Buffer;
+
+    getPublicKey(): Buffer;
+    getPublicKey(enc: encoding_t): string;
+
+    getPrivateKey(): Buffer;
+    getPrivateKey(enc: encoding_t): string;
+
+    getPrime(): Buffer;
+    getPrime(enc: encoding_t): string;
+
+    getGenerator(): Buffer;
+    getGenerator(enc: encoding_t): string;
+
+    setGenerator(gen: Buffer): this;
+    setGenerator(gen: string, enc: encoding_t): this;
 }
 
 declare function getDiffieHellman(mod: mod_t): DH;
