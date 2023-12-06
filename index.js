@@ -38,10 +38,5 @@ function createDiffieHellman(prime, enc, generator, genc) {
     return new DH(prime, generator, true)
 }
 
-//exports.DiffieHellmanGroup = exports.createDiffieHellmanGroup = exports.getDiffieHellman = getDiffieHellman
-//exports.createDiffieHellman = exports.DiffieHellman = createDiffieHellman
-
-exports = {
-    getDiffieHellman,
-    createDiffieHellman
-};
+exports.DiffieHellmanGroup = exports.createDiffieHellmanGroup = exports.getDiffieHellman = getDiffieHellman
+exports.createDiffieHellman = exports.DiffieHellman = createDiffieHellman
